@@ -1,0 +1,47 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+	
+	%
+	\[\mathop {\arg \min }\limits_X \quad \frac{1}{2}\left\| {Y - DX} \right\|_2^2 + \beta {\left\| X \right\|_1}\]
+	
+	%
+	\[\mathop {\arg \min }\limits_X \quad \frac{1}{2}\left\| {Y - DX} \right\|_2^2 + \beta {\left\| C \right\|_1}\]
+	\[s.t.\;X = C\]
+	
+	% 
+	\[\mathop {\arg \min }\limits_{X,C} \quad \frac{1}{2}\left\| {Y - DX} \right\|_2^2 + \beta {\left\| C \right\|_1} + \frac{\mu }{2}\left\| {X - C} \right\|_2^2 + {L^T}\left( {X - C} \right)\]
+	
+	\[\mathop {\arg \min }\limits_{X,C} \quad \frac{1}{2}\left\| {Y - DX} \right\|_2^2 + \beta {\left\| C \right\|_1} + \frac{\mu }{2}\left\| {C - X} \right\|_2^2 + {L^T}\left( {X - C} \right)\]
+	
+	\[{\rm E}\left( {X,C} \right) = \frac{1}{2}\left\| {Y - DX} \right\|_2^2 + \beta {\left\| C \right\|_1} + \frac{\mu }{2}\left\| {X - C} \right\|_2^2 + {L^T}\left( {X - C} \right)\]
+	
+	\[{\rm E}\left( {X,C} \right) = \frac{1}{2}\left\| {Y - DX} \right\|_2^2 + \beta {\left\| C \right\|_1} + \frac{\mu }{2}\left\| {C - X} \right\|_2^2 + {L^T}\left( {X - C} \right)\]
+	
+Solve for X:
+		%
+		\[\frac{{\partial E}}{{\partial X}} =  - {D^T}\left( {Y - DX} \right) + \mu \left( {X - C} \right) + L = 0\]
+		
+		%
+		\[X = {\left( {{D^T}D + \mu I} \right)^{ - 1}}\left( {{D^T}Y + \mu C - L} \right)\]
+	
+Solve for C:
+	%
+	\[\frac{{\partial E}}{{\partial C}} = \frac{\partial }{{\partial C}}\beta {\left\| C \right\|_1} + \mu \left( {C - X} \right) - L = 0\]
+	
+	%
+	\[C = sign\left( {X + \frac{L}{\mu }} \right) \cdot \max \left( {\left| {X + \frac{L}{\mu }} \right| - \frac{\beta }{\mu },0} \right)\]
+	
+Update Multiplier:
+	%
+	\[{L^{k + 1}} = {L^k} + \mu \left( {X - C} \right)\]
+
+Update Penalty:
+	%
+	\[{\mu ^{k + 1}} = \min \left( {\tau  \cdot {\mu ^k},{\mu _{\max }}} \right)\]
+	
+\end{document}
